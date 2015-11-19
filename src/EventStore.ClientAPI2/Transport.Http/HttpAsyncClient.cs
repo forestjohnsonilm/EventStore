@@ -36,7 +36,7 @@ namespace EventStore.ClientAPI.Transport.Http
 
             _httpClient = new HttpClient();
             _httpClient.Timeout = timeout;
-            // TODO refactor Accept header config??
+            // TODO add Accept header config??
             //_httpClient.DefaultRequestHeaders.Accept.Clear();
             //_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
