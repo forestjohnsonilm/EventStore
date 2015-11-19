@@ -1,23 +1,23 @@
-﻿using System.Net;
+﻿using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace EventStore.ClientAPI.Transport.Http
 {
     internal class HttpResponse
     {
-        public readonly string CharacterSet;
+        //public readonly string CharacterSet;
 
-        public readonly string ContentEncoding;
-        public readonly long ContentLength;
-        public readonly string ContentType;
+        //public readonly string ContentEncoding;
+        //public readonly long ContentLength;
+        //public readonly string ContentType;
 
         //public readonly CookieCollection Cookies;
-        public readonly WebHeaderCollection Headers;
+        public readonly HttpResponseHeaders Headers;
 
         //public readonly bool IsFromCache;
         //public readonly bool IsMutuallyAuthenticated;//TODO TR: not implemented in mono
         //public readonly DateTime LastModified;
 
-        public readonly string Method;
         //public readonly Version ProtocolVersion;
 
         //public readonly Uri ResponseUri;
@@ -28,30 +28,23 @@ namespace EventStore.ClientAPI.Transport.Http
 
         public string Body { get; internal set; }
 
-        public HttpResponse(HttpWebResponse httpWebResponse)
+        public HttpResponse(HttpResponseMessage responseMessage)
         {
-            CharacterSet = httpWebResponse.CharacterSet;
-
-            ContentEncoding = httpWebResponse.ContentEncoding;
-            ContentLength = httpWebResponse.ContentLength;
-            ContentType = httpWebResponse.ContentType;
-
             //Cookies = httpWebResponse.Cookies;
-            Headers = httpWebResponse.Headers;
+            Headers = responseMessage.Headers;
 
             //IsFromCache = httpWebResponse.IsFromCache;
             //IsMutuallyAuthenticated = httpWebResponse.IsMutuallyAuthenticated;
 
             //LastModified = httpWebResponse.LastModified;
 
-            Method = httpWebResponse.Method;
             //ProtocolVersion = httpWebResponse.ProtocolVersion;
 
             //ResponseUri = httpWebResponse.ResponseUri;
             //Server = httpWebResponse.Server;
 
-            HttpStatusCode = (int)httpWebResponse.StatusCode;
-            StatusDescription = httpWebResponse.StatusDescription;
+            HttpStatusCode = (int)responseMessage.StatusCode;
+            StatusDescription = responseMessage.StatusCode.ToString();
         }
     }
 }

@@ -170,14 +170,12 @@
     <Compile Include="SystemData\UserCredentials.cs" />
     <Compile Include="SystemSettings.cs" />
     <Compile Include="Transport.Http\AsyncStreamCopier.cs" />
-    <Compile Include="Transport.Http\ClientOperationState.cs" />
     <Compile Include="Transport.Http\ContentType.cs" />
     <Compile Include="Transport.Http\HttpAsyncClient.cs" />
     <Compile Include="Transport.Http\HttpMethod.cs" />
     <Compile Include="Transport.Http\HttpResponse.cs" />
     <Compile Include="Transport.Http\HttpStatusCode.cs" />
     <Compile Include="Transport.Http\IPEndpointExtensions.cs" />
-    <Compile Include="Transport.Http\WebRequestExtensions.cs" />
     <Compile Include="Transport.Tcp\IMonitoredTcpConnection.cs" />
     <Compile Include="Transport.Tcp\ITcpConnection.cs" />
     <Compile Include="Transport.Tcp\LengthPrefixFramer.cs" />
