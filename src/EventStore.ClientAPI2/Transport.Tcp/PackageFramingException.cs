@@ -1,5 +1,5 @@
 using System;
-using System.Runtime.Serialization;
+
 
 namespace EventStore.ClientAPI.Transport.Tcp
 {

@@ -29,12 +29,5 @@ namespace EventStore.ClientAPI.Exceptions
         public NotAuthenticatedException(string message, Exception innerException) : base(message, innerException)
         {
         }
-
-        /// <summary>
-        /// Constructs a new <see cref="NotAuthenticatedException"/>.
-        /// </summary>
-        protected NotAuthenticatedException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

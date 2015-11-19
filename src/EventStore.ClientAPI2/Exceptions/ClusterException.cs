@@ -30,13 +30,5 @@ namespace EventStore.ClientAPI.Exceptions
                 : base(message, innerException)
         {
         }
-
-        /// <summary>
-        /// Constructs a new <see cref="ClusterException" />.
-        /// </summary>
-        protected ClusterException(SerializationInfo info, StreamingContext context)
-                : base(info, context)
-        {
-        }
     }
 }

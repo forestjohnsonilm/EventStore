@@ -30,11 +30,5 @@ namespace EventStore.ClientAPI.Exceptions
         {
         }
 
-        /// <summary>
-        /// Constructs a new <see cref="ConnectionClosedException" />.
-        /// </summary>
-        protected ConnectionClosedException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }
