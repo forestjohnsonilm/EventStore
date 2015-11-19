@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace EventStore.ClientAPI.Exceptions
 {
     /// <summary>
@@ -20,13 +19,6 @@ namespace EventStore.ClientAPI.Exceptions
         /// Constructs a new instance of <see cref="WrongExpectedVersionException" />.
         /// </summary>
         public WrongExpectedVersionException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-
-        /// <summary>
-        /// Constructs a new instance of <see cref="WrongExpectedVersionException" />.
-        /// </summary>
-        protected WrongExpectedVersionException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

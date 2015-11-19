@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace EventStore.ClientAPI.Exceptions
 {
     /// <summary>
@@ -29,15 +28,6 @@ namespace EventStore.ClientAPI.Exceptions
         public UserCommandConflictException(string message,
                                                   Exception innerException)
             : base(message, innerException)
-        {
-        }
-
-        /// <summary>
-        /// Constructs a new <see cref="UserCommandFailedException"/>.
-        /// </summary>
-        protected UserCommandConflictException(SerializationInfo info,
-                                                     StreamingContext context)
-            : base(info, context)
         {
         }
     }

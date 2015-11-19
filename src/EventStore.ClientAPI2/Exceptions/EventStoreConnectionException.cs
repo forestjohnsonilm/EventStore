@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace EventStore.ClientAPI.Exceptions
 {
     /// <summary>
@@ -27,13 +26,6 @@ namespace EventStore.ClientAPI.Exceptions
         /// Constructs a new <see cref="EventStoreConnectionException"/>.
         /// </summary>
         public EventStoreConnectionException(string message, Exception innerException): base(message, innerException)
-        {
-        }
-
-        /// <summary>
-        /// Constructs a new <see cref="EventStoreConnectionException"/>.
-        /// </summary>
-        protected EventStoreConnectionException(SerializationInfo info, StreamingContext context): base(info, context)
         {
         }
     }
