@@ -463,6 +463,23 @@
           "lib/net45/_._": {}
         }
       },
+      "System.Net.NameResolution/4.0.0-rc2-23517": {
+        "dependencies": {
+          "System.Net.Primitives": "[4.0.10, )",
+          "System.Runtime": "[4.0.0, )",
+          "System.Threading.Tasks": "[4.0.0, )"
+        },
+        "frameworkAssemblies": [
+          "mscorlib",
+          "System"
+        ],
+        "compile": {
+          "ref/net46/System.Net.NameResolution.dll": {}
+        },
+        "runtime": {
+          "lib/net46/System.Net.NameResolution.dll": {}
+        }
+      },
       "System.Net.NetworkInformation/4.1.0-rc2-23517": {
         "frameworkAssemblies": [
           "mscorlib",
@@ -1270,6 +1287,23 @@
         },
         "runtime": {
           "lib/net45/_._": {}
+        }
+      },
+      "System.Net.NameResolution/4.0.0-rc2-23517": {
+        "dependencies": {
+          "System.Net.Primitives": "[4.0.10, )",
+          "System.Runtime": "[4.0.0, )",
+          "System.Threading.Tasks": "[4.0.0, )"
+        },
+        "frameworkAssemblies": [
+          "mscorlib",
+          "System"
+        ],
+        "compile": {
+          "ref/net46/System.Net.NameResolution.dll": {}
+        },
+        "runtime": {
+          "lib/net46/System.Net.NameResolution.dll": {}
         }
       },
       "System.Net.NetworkInformation/4.1.0-rc2-23517": {
@@ -2095,6 +2129,23 @@
         },
         "runtime": {
           "lib/net45/_._": {}
+        }
+      },
+      "System.Net.NameResolution/4.0.0-rc2-23517": {
+        "dependencies": {
+          "System.Net.Primitives": "[4.0.10, )",
+          "System.Runtime": "[4.0.0, )",
+          "System.Threading.Tasks": "[4.0.0, )"
+        },
+        "frameworkAssemblies": [
+          "mscorlib",
+          "System"
+        ],
+        "compile": {
+          "ref/net46/System.Net.NameResolution.dll": {}
+        },
+        "runtime": {
+          "lib/net46/System.Net.NameResolution.dll": {}
         }
       },
       "System.Net.NetworkInformation/4.1.0-rc2-23517": {
@@ -2946,6 +2997,16 @@
         },
         "compile": {
           "ref/dotnet5.2/System.Net.Http.dll": {}
+        }
+      },
+      "System.Net.NameResolution/4.0.0-rc2-23517": {
+        "dependencies": {
+          "System.Net.Primitives": "[4.0.10, )",
+          "System.Runtime": "[4.0.0, )",
+          "System.Threading.Tasks": "[4.0.0, )"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Net.NameResolution.dll": {}
         }
       },
       "System.Net.NetworkInformation/4.1.0-rc2-23517": {
@@ -3909,6 +3970,16 @@
         },
         "compile": {
           "ref/dotnet5.2/System.Net.Http.dll": {}
+        }
+      },
+      "System.Net.NameResolution/4.0.0-rc2-23517": {
+        "dependencies": {
+          "System.Net.Primitives": "[4.0.10, )",
+          "System.Runtime": "[4.0.0, )",
+          "System.Threading.Tasks": "[4.0.0, )"
+        },
+        "compile": {
+          "ref/dotnet5.4/System.Net.NameResolution.dll": {}
         }
       },
       "System.Net.NetworkInformation/4.1.0-rc2-23517": {
@@ -12433,6 +12504,7 @@
       "System.Data.SqlClient >= 4.0.0-rc2-23517",
       "System.IO >= 4.0.11-rc2-23517",
       "System.Net.Http >= 4.0.1-rc2-23517",
+      "System.Net.NameResolution >= 4.0.0-rc2-23517",
       "System.Runtime.Serialization.Primitives >= 4.1.0-rc2-23517",
       "System.Threading >= 4.0.11-rc2-23517",
       "System.Xml.XmlDocument >= 4.0.1-rc2-23517"

@@ -13,12 +13,10 @@ namespace EventStore.ClientAPI.Projections
     internal class ProjectionsClient
     {
         private readonly HttpAsyncClient _client;
-        private readonly TimeSpan _operationTimeout;
 
         public ProjectionsClient(ILogger log, TimeSpan operationTimeout)
         {
-            _operationTimeout = operationTimeout;
-            _client = new HttpAsyncClient(log);
+            _client = new HttpAsyncClient(log, operationTimeout);
         }
 
         public Task Enable(IPEndPoint endPoint, string name, UserCredentials userCredentials = null)
@@ -142,7 +140,6 @@ namespace EventStore.ClientAPI.Projections
             var source = new TaskCompletionSource<string>();
             _client.Get(url,
                         userCredentials,
-                        _operationTimeout,
                         response =>
                         {
                             if (response.HttpStatusCode == expectedCode)
@@ -165,7 +162,6 @@ namespace EventStore.ClientAPI.Projections
             var source = new TaskCompletionSource<string>();
             _client.Delete(url,
                            userCredentials,
-                           _operationTimeout,
                            response =>
                            {
                                if (response.HttpStatusCode == expectedCode)
@@ -190,7 +186,6 @@ namespace EventStore.ClientAPI.Projections
                         content,
                         "application/json",
                         userCredentials,
-                        _operationTimeout,
                         response =>
                         {
                             if (response.HttpStatusCode == expectedCode)
@@ -214,7 +209,6 @@ namespace EventStore.ClientAPI.Projections
             _client.Post(url,
                          content,
                          "application/json",
-                         _operationTimeout,
                          userCredentials,
                          response =>
                          {
