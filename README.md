@@ -1,6 +1,8 @@
 
 #Event Store
 
+[![Build status](https://ci.appveyor.com/api/projects/status/5n7fybgq52a6848d?svg=true)](https://ci.appveyor.com/project/EventStore/eventstore)
+
 **The main documentation has moved to <a href="https://docs.geteventstore.com">https://docs.geteventstore.com</a>.**
 
 <em>**Development is on the branch aimed at the next release (usually prefixed with release-v0.0.0). Please make any pull requests to this branch**.</em>
