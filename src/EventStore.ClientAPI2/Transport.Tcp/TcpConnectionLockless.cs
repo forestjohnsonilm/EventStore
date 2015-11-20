@@ -317,7 +317,8 @@ namespace EventStore.ClientAPI.Transport.Tcp
             if (socket != null)
             {
                 Helper.EatException(() => socket.Shutdown(SocketShutdown.Both));
-                Helper.EatException(() => socket.Close(TcpConfiguration.SocketCloseTimeoutMs));
+                // TODO: Is there a way to do this in .NET Core? 
+                //Helper.EatException(() => socket.Close(TcpConfiguration.SocketCloseTimeoutMs));
             }
         }
 

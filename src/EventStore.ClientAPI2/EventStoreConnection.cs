@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Sockets;
 using EventStore.ClientAPI.Common.Utils;
 using EventStore.ClientAPI.Internal;
+using System.Threading.Tasks;
 using System;
 using EventStore.ClientAPI.SystemData;
 
@@ -118,7 +119,7 @@ namespace EventStore.ClientAPI
             var ipaddress = IPAddress.Any;
             if (!IPAddress.TryParse(uri.Host, out ipaddress))
             {
-                var entries = Dns.GetHostAddresses(uri.Host);
+                var entries = Dns.GetHostAddressesAsync(uri.Host).Result;
                 if (entries.Length == 0) throw new Exception(string.Format("Unable to parse IP address or lookup DNS host for '{0}'", uri.Host));
                 //pick an IPv4 address, if one exists
                 ipaddress = entries.FirstOrDefault(a => a.AddressFamily == AddressFamily.InterNetwork);
