@@ -18,10 +18,5 @@ namespace EventStore.ClientAPI.Transport.Tcp
                 : base(message, innerException)
         {
         }
-
-        protected PackageFramingException(SerializationInfo info, StreamingContext context)
-                : base(info, context)
-        {
-        }
     }
 }
