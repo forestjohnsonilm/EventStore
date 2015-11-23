@@ -80,6 +80,7 @@
     <Compile Include="ConnectionSettings.cs" />
     <Compile Include="ConnectionSettingsBuilder.cs" />
     <Compile Include="ConnectionString.cs" />
+    <Compile Include="DbConnectionStringKeyValueEnumerator.cs" />
     <Compile Include="DeleteResult.cs" />
     <Compile Include="DnsClusterSettingsBuilder.cs" />
     <Compile Include="EventData.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Exceptions\UserCommandFailedException.cs" />
     <Compile Include="Exceptions\WrongExpectedVersionException.cs" />
     <Compile Include="ExpectedVersion.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="GossipSeed.cs" />
     <Compile Include="GossipSeedClusterSettingsBuilder.cs" />
     <Compile Include="IConnectToPersistentSubscriptions.cs" />
