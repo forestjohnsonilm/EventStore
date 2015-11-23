@@ -22,6 +22,7 @@ namespace EventStore.Core.Tests
 
             if (!Debugger.IsAttached)
                 PortsHelper.InitPorts(IPAddress.Loopback);
+
         }
 
         private void LogEnvironmentInfo()
