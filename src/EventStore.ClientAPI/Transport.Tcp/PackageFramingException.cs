@@ -1,5 +1,5 @@
 using System;
-using System.Runtime.Serialization;
+
 
 namespace EventStore.ClientAPI.Transport.Tcp
 {
@@ -16,11 +16,6 @@ namespace EventStore.ClientAPI.Transport.Tcp
 
         public PackageFramingException(string message, Exception innerException)
                 : base(message, innerException)
-        {
-        }
-
-        protected PackageFramingException(SerializationInfo info, StreamingContext context)
-                : base(info, context)
         {
         }
     }

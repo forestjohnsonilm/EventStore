@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.Serialization;
+
 
 namespace EventStore.ClientAPI.Exceptions
 {
@@ -27,13 +27,6 @@ namespace EventStore.ClientAPI.Exceptions
         /// Constructs a new <see cref="NotAuthenticatedException"/>.
         /// </summary>
         public NotAuthenticatedException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-
-        /// <summary>
-        /// Constructs a new <see cref="NotAuthenticatedException"/>.
-        /// </summary>
-        protected NotAuthenticatedException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

@@ -17,7 +17,7 @@ namespace EventStore.ClientAPI.Messages
 {
   internal static partial class ClientMessage
   {
-  [Serializable, ProtoContract(Name=@"NewEvent")]
+  [ProtoContract(Name=@"NewEvent")]
   public partial class NewEvent
   {
     [ProtoMember(1, IsRequired = true, Name=@"event_id", DataFormat = DataFormat.Default)]
@@ -51,7 +51,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"EventRecord")]
+  [ProtoContract(Name=@"EventRecord")]
   public partial class EventRecord
   {
     [ProtoMember(1, IsRequired = true, Name=@"event_stream_id", DataFormat = DataFormat.Default)]
@@ -101,7 +101,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ResolvedIndexedEvent")]
+  [ProtoContract(Name=@"ResolvedIndexedEvent")]
   public partial class ResolvedIndexedEvent
   {
     [ProtoMember(1, IsRequired = true, Name=@"event", DataFormat = DataFormat.Default)]
@@ -119,7 +119,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ResolvedEvent")]
+  [ProtoContract(Name=@"ResolvedEvent")]
   public partial class ResolvedEvent
   {
     [ProtoMember(1, IsRequired = true, Name=@"event", DataFormat = DataFormat.Default)]
@@ -145,7 +145,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"WriteEvents")]
+  [ProtoContract(Name=@"WriteEvents")]
   public partial class WriteEvents
   {
     [ProtoMember(1, IsRequired = true, Name=@"event_stream_id", DataFormat = DataFormat.Default)]
@@ -171,7 +171,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"WriteEventsCompleted")]
+  [ProtoContract(Name=@"WriteEventsCompleted")]
   public partial class WriteEventsCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"result", DataFormat = DataFormat.TwosComplement)]
@@ -205,7 +205,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"DeleteStream")]
+  [ProtoContract(Name=@"DeleteStream")]
   public partial class DeleteStream
   {
     [ProtoMember(1, IsRequired = true, Name=@"event_stream_id", DataFormat = DataFormat.Default)]
@@ -231,7 +231,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"DeleteStreamCompleted")]
+  [ProtoContract(Name=@"DeleteStreamCompleted")]
   public partial class DeleteStreamCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"result", DataFormat = DataFormat.TwosComplement)]
@@ -257,7 +257,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"TransactionStart")]
+  [ProtoContract(Name=@"TransactionStart")]
   public partial class TransactionStart
   {
     [ProtoMember(1, IsRequired = true, Name=@"event_stream_id", DataFormat = DataFormat.Default)]
@@ -279,7 +279,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"TransactionStartCompleted")]
+  [ProtoContract(Name=@"TransactionStartCompleted")]
   public partial class TransactionStartCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"transaction_id", DataFormat = DataFormat.TwosComplement)]
@@ -301,7 +301,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"TransactionWrite")]
+  [ProtoContract(Name=@"TransactionWrite")]
   public partial class TransactionWrite
   {
     [ProtoMember(1, IsRequired = true, Name=@"transaction_id", DataFormat = DataFormat.TwosComplement)]
@@ -323,7 +323,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"TransactionWriteCompleted")]
+  [ProtoContract(Name=@"TransactionWriteCompleted")]
   public partial class TransactionWriteCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"transaction_id", DataFormat = DataFormat.TwosComplement)]
@@ -345,7 +345,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"TransactionCommit")]
+  [ProtoContract(Name=@"TransactionCommit")]
   public partial class TransactionCommit
   {
     [ProtoMember(1, IsRequired = true, Name=@"transaction_id", DataFormat = DataFormat.TwosComplement)]
@@ -363,7 +363,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"TransactionCommitCompleted")]
+  [ProtoContract(Name=@"TransactionCommitCompleted")]
   public partial class TransactionCommitCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"transaction_id", DataFormat = DataFormat.TwosComplement)]
@@ -401,7 +401,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ReadEvent")]
+  [ProtoContract(Name=@"ReadEvent")]
   public partial class ReadEvent
   {
     [ProtoMember(1, IsRequired = true, Name=@"event_stream_id", DataFormat = DataFormat.Default)]
@@ -427,7 +427,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ReadEventCompleted")]
+  [ProtoContract(Name=@"ReadEventCompleted")]
   public partial class ReadEventCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"result", DataFormat = DataFormat.TwosComplement)]
@@ -472,7 +472,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ReadStreamEvents")]
+  [ProtoContract(Name=@"ReadStreamEvents")]
   public partial class ReadStreamEvents
   {
     [ProtoMember(1, IsRequired = true, Name=@"event_stream_id", DataFormat = DataFormat.Default)]
@@ -502,7 +502,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ReadStreamEventsCompleted")]
+  [ProtoContract(Name=@"ReadStreamEventsCompleted")]
   public partial class ReadStreamEventsCompleted
   {
     [ProtoMember(1, Name=@"events", DataFormat = DataFormat.Default)]
@@ -563,7 +563,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ReadAllEvents")]
+  [ProtoContract(Name=@"ReadAllEvents")]
   public partial class ReadAllEvents
   {
     [ProtoMember(1, IsRequired = true, Name=@"commit_position", DataFormat = DataFormat.TwosComplement)]
@@ -593,7 +593,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ReadAllEventsCompleted")]
+  [ProtoContract(Name=@"ReadAllEventsCompleted")]
   public partial class ReadAllEventsCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"commit_position", DataFormat = DataFormat.TwosComplement)]
@@ -648,7 +648,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"CreatePersistentSubscription")]
+  [ProtoContract(Name=@"CreatePersistentSubscription")]
   public partial class CreatePersistentSubscription
   {
     [ProtoMember(1, IsRequired = true, Name=@"subscription_group_name", DataFormat = DataFormat.Default)]
@@ -722,7 +722,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"DeletePersistentSubscription")]
+  [ProtoContract(Name=@"DeletePersistentSubscription")]
   public partial class DeletePersistentSubscription
   {
     [ProtoMember(1, IsRequired = true, Name=@"subscription_group_name", DataFormat = DataFormat.Default)]
@@ -740,7 +740,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"UpdatePersistentSubscription")]
+  [ProtoContract(Name=@"UpdatePersistentSubscription")]
   public partial class UpdatePersistentSubscription
   {
     [ProtoMember(1, IsRequired = true, Name=@"subscription_group_name", DataFormat = DataFormat.Default)]
@@ -814,7 +814,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"UpdatePersistentSubscriptionCompleted")]
+  [ProtoContract(Name=@"UpdatePersistentSubscriptionCompleted")]
   public partial class UpdatePersistentSubscriptionCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"result", DataFormat = DataFormat.TwosComplement)]
@@ -849,7 +849,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"CreatePersistentSubscriptionCompleted")]
+  [ProtoContract(Name=@"CreatePersistentSubscriptionCompleted")]
   public partial class CreatePersistentSubscriptionCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"result", DataFormat = DataFormat.TwosComplement)]
@@ -884,7 +884,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"DeletePersistentSubscriptionCompleted")]
+  [ProtoContract(Name=@"DeletePersistentSubscriptionCompleted")]
   public partial class DeletePersistentSubscriptionCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"result", DataFormat = DataFormat.TwosComplement)]
@@ -919,7 +919,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ConnectToPersistentSubscription")]
+  [ProtoContract(Name=@"ConnectToPersistentSubscription")]
   public partial class ConnectToPersistentSubscription
   {
     [ProtoMember(1, IsRequired = true, Name=@"subscription_id", DataFormat = DataFormat.Default)]
@@ -941,7 +941,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"PersistentSubscriptionAckEvents")]
+  [ProtoContract(Name=@"PersistentSubscriptionAckEvents")]
   public partial class PersistentSubscriptionAckEvents
   {
     [ProtoMember(1, IsRequired = true, Name=@"subscription_id", DataFormat = DataFormat.Default)]
@@ -959,7 +959,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"PersistentSubscriptionNakEvents")]
+  [ProtoContract(Name=@"PersistentSubscriptionNakEvents")]
   public partial class PersistentSubscriptionNakEvents
   {
     [ProtoMember(1, IsRequired = true, Name=@"subscription_id", DataFormat = DataFormat.Default)]
@@ -1005,7 +1005,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"PersistentSubscriptionConfirmation")]
+  [ProtoContract(Name=@"PersistentSubscriptionConfirmation")]
   public partial class PersistentSubscriptionConfirmation
   {
     [ProtoMember(1, IsRequired = true, Name=@"last_commit_position", DataFormat = DataFormat.TwosComplement)]
@@ -1027,7 +1027,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"PersistentSubscriptionStreamEventAppeared")]
+  [ProtoContract(Name=@"PersistentSubscriptionStreamEventAppeared")]
   public partial class PersistentSubscriptionStreamEventAppeared
   {
     [ProtoMember(1, IsRequired = true, Name=@"event", DataFormat = DataFormat.Default)]
@@ -1041,7 +1041,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"SubscribeToStream")]
+  [ProtoContract(Name=@"SubscribeToStream")]
   public partial class SubscribeToStream
   {
     [ProtoMember(1, IsRequired = true, Name=@"event_stream_id", DataFormat = DataFormat.Default)]
@@ -1059,7 +1059,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"SubscriptionConfirmation")]
+  [ProtoContract(Name=@"SubscriptionConfirmation")]
   public partial class SubscriptionConfirmation
   {
     [ProtoMember(1, IsRequired = true, Name=@"last_commit_position", DataFormat = DataFormat.TwosComplement)]
@@ -1077,7 +1077,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"StreamEventAppeared")]
+  [ProtoContract(Name=@"StreamEventAppeared")]
   public partial class StreamEventAppeared
   {
     [ProtoMember(1, IsRequired = true, Name=@"event", DataFormat = DataFormat.Default)]
@@ -1091,7 +1091,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"UnsubscribeFromStream")]
+  [ProtoContract(Name=@"UnsubscribeFromStream")]
   public partial class UnsubscribeFromStream
   {
     public UnsubscribeFromStream()
@@ -1099,7 +1099,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"SubscriptionDropped")]
+  [ProtoContract(Name=@"SubscriptionDropped")]
   public partial class SubscriptionDropped
   {
     [ProtoMember(1, IsRequired = false, Name=@"reason", DataFormat = DataFormat.TwosComplement)]
@@ -1133,7 +1133,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"NotHandled")]
+  [ProtoContract(Name=@"NotHandled")]
   public partial class NotHandled
   {
     [ProtoMember(1, IsRequired = true, Name=@"reason", DataFormat = DataFormat.TwosComplement)]
@@ -1142,7 +1142,7 @@ namespace EventStore.ClientAPI.Messages
     [ProtoMember(2, IsRequired = false, Name=@"additional_info", DataFormat = DataFormat.Default)]
     public readonly byte[] AdditionalInfo;
   
-  [Serializable, ProtoContract(Name=@"MasterInfo")]
+  [ProtoContract(Name=@"MasterInfo")]
   public partial class MasterInfo
   {
     [ProtoMember(1, IsRequired = true, Name=@"external_tcp_address", DataFormat = DataFormat.Default)]
@@ -1199,7 +1199,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ScavengeDatabase")]
+  [ProtoContract(Name=@"ScavengeDatabase")]
   public partial class ScavengeDatabase
   {
     public ScavengeDatabase()
@@ -1207,7 +1207,7 @@ namespace EventStore.ClientAPI.Messages
     }
   }
   
-  [Serializable, ProtoContract(Name=@"ScavengeDatabaseCompleted")]
+  [ProtoContract(Name=@"ScavengeDatabaseCompleted")]
   public partial class ScavengeDatabaseCompleted
   {
     [ProtoMember(1, IsRequired = true, Name=@"result", DataFormat = DataFormat.TwosComplement)]

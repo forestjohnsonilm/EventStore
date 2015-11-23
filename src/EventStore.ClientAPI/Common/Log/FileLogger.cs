@@ -17,7 +17,7 @@ namespace EventStore.ClientAPI.Common.Log
 
         private void OpenFile(string filename)
         {
-            _streamWriter = new StreamWriter(filename) {AutoFlush = true};
+            _streamWriter = new StreamWriter(File.Open(filename, FileMode.Append)) {AutoFlush = true};
         }
 
         public void Error(string format, params object[] args)
@@ -57,7 +57,6 @@ namespace EventStore.ClientAPI.Common.Log
         void IDisposable.Dispose()
         {
             if (_streamWriter == null) return;
-            _streamWriter.Close();
             _streamWriter.Dispose();
         }
     }

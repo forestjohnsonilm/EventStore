@@ -144,7 +144,9 @@ namespace EventStore.ClientAPI.Transport.Tcp
                     break;
             }
 
-            _sendSocketArgs.SetBuffer(_memoryStream.GetBuffer(), 0, (int) _memoryStream.Length);
+            // TODO _memoryStream.ToArray() will alocate up to MaxSendPacketSize (64K) of RAM. 
+            // Mabye SocketAsyncEventArgs should be refactored to use an ArraySegment instead?
+            _sendSocketArgs.SetBuffer(_memoryStream.ToArray(), 0, (int)_memoryStream.Length);
 
             try
             {
@@ -312,7 +314,9 @@ namespace EventStore.ClientAPI.Transport.Tcp
             if (_socket != null)
             {
                 Helper.EatException(() => _socket.Shutdown(SocketShutdown.Both));
-                Helper.EatException(() => _socket.Close(TcpConfiguration.SocketCloseTimeoutMs));
+
+                // TODO: what to do about this? Not supported in .NET Core.
+                //Helper.EatException(() => _socket.Close(TcpConfiguration.SocketCloseTimeoutMs));
                 _socket = null;
             }
 

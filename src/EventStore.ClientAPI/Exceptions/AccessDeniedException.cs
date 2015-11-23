@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace EventStore.ClientAPI.Exceptions
 {
@@ -27,13 +26,6 @@ namespace EventStore.ClientAPI.Exceptions
         /// Constructs a new <see cref="AccessDeniedException" />.
         /// </summary>
         public AccessDeniedException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-
-        /// <summary>
-        /// Constructs a new <see cref="AccessDeniedException" />.
-        /// </summary>
-        protected AccessDeniedException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

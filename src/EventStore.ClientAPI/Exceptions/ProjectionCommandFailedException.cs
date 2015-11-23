@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace EventStore.ClientAPI.Exceptions
 {
@@ -35,15 +34,6 @@ namespace EventStore.ClientAPI.Exceptions
         public ProjectionCommandFailedException(string message,
                  Exception innerException)
             : base(message, innerException)
-        {
-        }
-
-        /// <summary>
-        /// Constructs a new <see cref="ProjectionCommandFailedException"/>.
-        /// </summary>
-        protected ProjectionCommandFailedException(SerializationInfo info,
-                    StreamingContext context)
-            : base(info, context)
         {
         }
     }

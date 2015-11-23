@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace EventStore.ClientAPI.Exceptions
 {
@@ -29,13 +28,6 @@ namespace EventStore.ClientAPI.Exceptions
         /// </summary>
         public ServerErrorException(string message, Exception innerException)
                 : base(string.Format("Unexpected error on server: {0}", message), innerException)
-        {
-        }
-
-        /// <summary>
-        /// Constructs a new instance of <see cref="ServerErrorException"/>.
-        /// </summary>
-        protected ServerErrorException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

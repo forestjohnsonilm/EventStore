@@ -263,7 +263,7 @@ namespace EventStore.ClientAPI
             else
             {
                 jsonWriter.WriteStartArray();
-                Array.ForEach(roles, jsonWriter.WriteValue);
+                roles.AsEnumerable().ForEach(jsonWriter.WriteValue);
                 jsonWriter.WriteEndArray();
             }
         }

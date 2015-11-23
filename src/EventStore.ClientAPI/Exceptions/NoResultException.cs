@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace EventStore.ClientAPI.Exceptions
 {
@@ -27,13 +26,6 @@ namespace EventStore.ClientAPI.Exceptions
         /// Constructs a new <see cref="NoResultException"/>.
         /// </summary>
         public NoResultException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
-
-        /// <summary>
-        /// Constructs a new <see cref="NoResultException"/>.
-        /// </summary>
-        protected NoResultException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

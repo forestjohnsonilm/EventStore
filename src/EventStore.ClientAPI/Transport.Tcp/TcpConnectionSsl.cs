@@ -8,6 +8,7 @@ using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using EventStore.ClientAPI.Common;
 using EventStore.ClientAPI.Common.Utils;
 using System.Collections.Concurrent;
@@ -104,7 +105,8 @@ namespace EventStore.ClientAPI.Transport.Tcp
                 _sslStream = new SslStream(new NetworkStream(socket, true), false, ValidateServerCertificate, null);
                 try
                 {
-                    _sslStream.BeginAuthenticateAsClient(targetHost, OnEndAuthenticateAsClient, _sslStream);
+                    //_sslStream.BeginAuthenticateAsClient(targetHost, OnEndAuthenticateAsClient, _sslStream);
+                    _sslStream.AuthenticateAsClientAsync(targetHost).ContinueWith((task) => OnEndAuthenticateAsClient(_sslStream));
                 }
                 catch (AuthenticationException exc)
                 {
@@ -123,14 +125,12 @@ namespace EventStore.ClientAPI.Transport.Tcp
             }
         }
 
-        private void OnEndAuthenticateAsClient(IAsyncResult ar)
+        private void OnEndAuthenticateAsClient(SslStream sslStream)
         {
             try
             {
                 lock (_streamLock)
                 {
-                    var sslStream = (SslStream) ar.AsyncState;
-                    sslStream.EndAuthenticateAsClient(ar);
                     DisplaySslStreamInfo(sslStream);
                     _isAuthenticated = true;
                 }
@@ -174,25 +174,32 @@ namespace EventStore.ClientAPI.Transport.Tcp
             sb.AppendFormat("Hash: {0} strength {1}\n", stream.HashAlgorithm, stream.HashStrength);
             sb.AppendFormat("Key exchange: {0} strength {1}\n", stream.KeyExchangeAlgorithm, stream.KeyExchangeStrength);
             sb.AppendFormat("Protocol: {0}\n", stream.SslProtocol);
-            sb.AppendFormat("Is authenticated: {0} as server? {1}\n", stream.IsAuthenticated, stream.IsServer);
-            sb.AppendFormat("IsSigned: {0}\n", stream.IsSigned);
-            sb.AppendFormat("Is Encrypted: {0}\n", stream.IsEncrypted);
+            
+            // TODO: Is there a way to do this in .NET Core? 
+            //sb.AppendFormat("Is authenticated: {0} as server? {1}\n", stream.IsAuthenticated, stream.IsServer);
+            //sb.AppendFormat("IsSigned: {0}\n", stream.IsSigned);
+            //sb.AppendFormat("Is Encrypted: {0}\n", stream.IsEncrypted);
             sb.AppendFormat("Can read: {0}, write {1}\n", stream.CanRead, stream.CanWrite);
             sb.AppendFormat("Can timeout: {0}\n", stream.CanTimeout);
             sb.AppendFormat("Certificate revocation list checked: {0}\n", stream.CheckCertRevocationStatus);
 
             X509Certificate localCert = stream.LocalCertificate;
+
             if (localCert != null)
-                sb.AppendFormat("Local certificate was issued to {0} and is valid from {1} until {2}.\n",
-                                localCert.Subject, localCert.GetEffectiveDateString(), localCert.GetExpirationDateString());
+                // TODO: Is there a way to do this in .NET Core? 
+                //sb.AppendFormat("Local certificate was issued to {0} and is valid from {1} until {2}.\n",
+                //                localCert.Subject, localCert.GetEffectiveDateString(), localCert.GetExpirationDateString());
+                sb.AppendFormat("Local certificate was issued to {0}.\n", localCert.Subject);
             else
                 sb.AppendFormat("Local certificate is null.\n");
 
             // Display the properties of the client's certificate.
             X509Certificate remoteCert = stream.RemoteCertificate;
             if (remoteCert != null)
-                sb.AppendFormat("Remote certificate was issued to {0} and is valid from {1} until {2}.\n",
-                                remoteCert.Subject, remoteCert.GetEffectiveDateString(), remoteCert.GetExpirationDateString());
+                // TODO: Is there a way to do this in .NET Core? 
+                //sb.AppendFormat("Remote certificate was issued to {0} and is valid from {1} until {2}.\n",
+                //                remoteCert.Subject, remoteCert.GetEffectiveDateString(), remoteCert.GetExpirationDateString());
+                sb.AppendFormat("Remote certificate was issued to {0}.\n", remoteCert.Subject);
             else
                 sb.AppendFormat("Remote certificate is null.\n");
 
@@ -237,7 +244,7 @@ namespace EventStore.ClientAPI.Transport.Tcp
             try
             {
                 NotifySendStarting(_sendingBytes);
-                _sslStream.BeginWrite(_memoryStream.GetBuffer(), 0, _sendingBytes, OnEndWrite, null);
+                _sslStream.WriteAsync(_memoryStream.GetBuffer(), 0, _sendingBytes).ContinueWith(OnEndWrite);
             }
             catch (SocketException exc)
             {
@@ -255,11 +262,15 @@ namespace EventStore.ClientAPI.Transport.Tcp
             }
         }
 
-        private void OnEndWrite(IAsyncResult ar)
+        private void OnEndWrite(Task writeTask)
         {
             try
             {
-                _sslStream.EndWrite(ar);
+                if (writeTask.Exception != null)
+                {
+                    throw writeTask.Exception;
+                }
+
                 NotifySendCompleted(_sendingBytes);
 
                 lock (_streamLock)
@@ -304,7 +315,7 @@ namespace EventStore.ClientAPI.Transport.Tcp
             try
             {
                 NotifyReceiveStarting();
-                _sslStream.BeginRead(_receiveBuffer, 0, _receiveBuffer.Length, OnEndRead, null);
+                _sslStream.ReadAsync(_receiveBuffer, 0, _receiveBuffer.Length).ContinueWith(OnEndRead);
             }
             catch (SocketException exc)
             {
@@ -322,12 +333,16 @@ namespace EventStore.ClientAPI.Transport.Tcp
             }
         }
 
-        private void OnEndRead(IAsyncResult ar)
+        private void OnEndRead(Task<int> readTask)
         {
             int bytesRead;
             try
             {
-                bytesRead = _sslStream.EndRead(ar);
+                if(readTask.Exception != null)
+                {
+                    throw readTask.Exception;
+                }
+                bytesRead = readTask.Result;
             }
             catch (SocketException exc)
             {
@@ -423,8 +438,10 @@ namespace EventStore.ClientAPI.Transport.Tcp
                       ReceiveCalls, ReceiveCallbacks,
                       socketError, reason, GetType().Name);
 
-            if (_sslStream != null)
-                Helper.EatException(() => _sslStream.Close());
+
+            // TODO: Is there a way to do this in .NET Core? 
+            //if (_sslStream != null)
+            //    Helper.EatException(() => _sslStream.Close());
 
             if (_onConnectionClosed != null)
                 _onConnectionClosed(this, socketError);

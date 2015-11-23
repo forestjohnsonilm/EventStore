@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.Serialization;
+
 
 namespace EventStore.ClientAPI.Exceptions
 {
@@ -28,14 +28,6 @@ namespace EventStore.ClientAPI.Exceptions
         /// </summary>
         public ClusterException(string message, Exception innerException)
                 : base(message, innerException)
-        {
-        }
-
-        /// <summary>
-        /// Constructs a new <see cref="ClusterException" />.
-        /// </summary>
-        protected ClusterException(SerializationInfo info, StreamingContext context)
-                : base(info, context)
         {
         }
     }

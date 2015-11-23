@@ -22,7 +22,6 @@ namespace EventStore.ClientAPI.Internal
 
         private readonly HttpAsyncClient _client;
         private ClusterMessages.MemberInfoDto[] _oldGossip;
-        private TimeSpan _gossipTimeout;
 
         public ClusterDnsEndPointDiscoverer(ILogger log, 
                                             string clusterDns,
@@ -38,11 +37,10 @@ namespace EventStore.ClientAPI.Internal
             _maxDiscoverAttempts = maxDiscoverAttempts;
             _managerExternalHttpPort = managerExternalHttpPort;
             _gossipSeeds = gossipSeeds;
-            _gossipTimeout = gossipTimeout;
-            _client = new HttpAsyncClient(log);
+            _client = new HttpAsyncClient(log, gossipTimeout);
         }
 
-        public Task<NodeEndPoints> DiscoverAsync(IPEndPoint failedTcpEndPoint )
+        public Task<NodeEndPoints> DiscoverAsync(IPEndPoint failedTcpEndPoint)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -70,6 +68,7 @@ namespace EventStore.ClientAPI.Internal
                 throw new ClusterException(string.Format("Failed to discover candidate in {0} attempts.", _maxDiscoverAttempts));
             });
         }
+
 
         private NodeEndPoints? DiscoverEndPoint(IPEndPoint failedEndPoint)
         {
@@ -104,7 +103,7 @@ namespace EventStore.ClientAPI.Internal
             } 
             else
             {
-                endpoints = ResolveDns(_clusterDns).Select(x => new GossipSeed(new IPEndPoint(x, _managerExternalHttpPort))).ToArray();
+                endpoints = (ResolveDns(_clusterDns)).Select(x => new GossipSeed(new IPEndPoint(x, _managerExternalHttpPort))).ToArray();
             }
             
             RandomShuffle(endpoints, 0, endpoints.Length-1);
@@ -116,7 +115,7 @@ namespace EventStore.ClientAPI.Internal
             IPAddress[] addresses;
             try
             {
-                addresses = Dns.GetHostAddresses(dns);
+                addresses = Dns.GetHostAddressesAsync(dns).Result;
             }
             catch (Exception exc)
             {
@@ -181,7 +180,6 @@ namespace EventStore.ClientAPI.Internal
             _client.Get(
                 url,
                 null,
-                _gossipTimeout,
                 response =>
                 {
                     if (response.HttpStatusCode != HttpStatusCode.OK)

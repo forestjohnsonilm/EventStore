@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -55,10 +54,7 @@ namespace EventStore.ClientAPI
         /// <returns></returns>
         internal static IEnumerable<KeyValuePair<string, string>> GetConnectionStringInfo(string connectionString)
         {
-            var builder = new DbConnectionStringBuilder(false) { ConnectionString = connectionString };
-            //can someome mutate this builder before the enumerable is closed sure but thats the fun!
-            return from object key in builder.Keys
-                   select new KeyValuePair<string, string>(key.ToString(), builder[key.ToString()].ToString());
+            return new DbConnectionStringKeyValueEnumerator(connectionString).ToList();
         }
 
         /// <summary>
@@ -98,7 +94,7 @@ namespace EventStore.ClientAPI
             var fields = typeFields.Select(x => new Tuple<string, FieldInfo>(x.Name, x))
                 .Concat(typeFields.Select(x => new Tuple<string, FieldInfo>(WithSpaces(x.Name), x)))
                 .GroupBy(x => x.Item1)
-                .ToDictionary(x => x.First().Item1, x => x.First().Item2, StringComparer.InvariantCultureIgnoreCase);
+                .ToDictionary(x => x.First().Item1, x => x.First().Item2, StringComparer.Ordinal);
 
             foreach (var item in items)
             {

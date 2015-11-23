@@ -1,5 +1,5 @@
 using System;
-using System.Runtime.Serialization;
+
 
 namespace EventStore.ClientAPI.Exceptions
 {
@@ -30,11 +30,5 @@ namespace EventStore.ClientAPI.Exceptions
         {
         }
 
-        /// <summary>
-        /// Constructs a new <see cref="ConnectionClosedException" />.
-        /// </summary>
-        protected ConnectionClosedException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

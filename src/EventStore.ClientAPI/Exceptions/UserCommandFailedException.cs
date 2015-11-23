@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.Serialization;
+
 
 namespace EventStore.ClientAPI.Exceptions
 {
@@ -36,12 +36,5 @@ namespace EventStore.ClientAPI.Exceptions
         {
         }
 
-        /// <summary>
-        /// Constructs a new <see cref="UserCommandFailedException"/>.
-        /// </summary>
-        protected UserCommandFailedException(SerializationInfo info,
-                    StreamingContext context) : base(info, context)
-        {
-        }
     }
 }
