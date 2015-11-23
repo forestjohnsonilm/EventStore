@@ -171,7 +171,6 @@
     <Compile Include="SystemData\TcpPackage.cs" />
     <Compile Include="SystemData\UserCredentials.cs" />
     <Compile Include="SystemSettings.cs" />
-    <Compile Include="Transport.Http\AsyncStreamCopier.cs" />
     <Compile Include="Transport.Http\ContentType.cs" />
     <Compile Include="Transport.Http\HttpAsyncClient.cs" />
     <Compile Include="Transport.Http\HttpMethod.cs" />
